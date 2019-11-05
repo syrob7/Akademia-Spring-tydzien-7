@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <title>Title</title>
+</head>
+<body>
+    <h1 align="center">Search Cars by Production Year</h1>
+    <form th:action="@{/get-cars-production-years}" th:object="${queryObject}" method="get">
+        <table align="center" border="0" cellpadding="4" cellspacing="1">
+            <tr>
+                <td><label th:text="#{msg.YearFrom}"/></td>
+                <td>
+                    <select name="yearFrom">
+                        <option th:each="year : ${#numbers.sequence(2000, #dates.year(#dates.createNow()))}"
+                                th:value="${year}" th:text="${year}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label th:text="#{msg.YearTo}"/></td>
+                <td>
+                    <select name="yearTo">
+                        <option th:each="year : ${#numbers.sequence(2000, #dates.year(#dates.createNow()))}"
+                                th:value="${year}" th:text="${year}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center" bgcolor="#ffffff"><input type="submit" value="Submit"/></td>
+            </tr>
+        </table>
+    </form>
+    <div>
+        <p>
+            <a th:href="@{/home}" th:text="#{msg.Home}"/>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <title>Cars List</title>
+    <script type="text/javascript">
+        function changeTrBg(row){
+            row.style.backgroundColor = "#e6e6e6";
+        }
+
+        function defaultTrBg(row){
+            row.style.backgroundColor = "white";
+        }
+    </script>
+</head>
+<body>
+<h1 align="center">Cars List</h1>
+<table align="center"  border="0" cellpadding="4" cellspacing="1">
+    <thead>
+        <tr>
+            <th th:width="50" th:text="#{msg.Id}"/>
+            <th th:width="150"  th:text="#{msg.Mark}"/>
+            <th th:width="150" th:text="#{msg.Model}"/>
+            <th th:width="150" th:text="#{msg.Color}"/>
+            <th th:width="150" th:text="#{msg.Year}"/>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}" onmouseover="changeTrBg(this)" onmouseout="defaultTrBg(this)">
+        <td th:align="center" th:text="${car.getCarId()}"/>
+        <td th:align="center" th:text="${car.getMark().name()}"/>
+        <td th:align="center" th:text="${car.model}"/>
+        <td th:align="center" th:text="${car.getColor().name()}"/>
+        <td th:align="center" th:text="${car.productionYear}"/>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <p>
+        <a th:href="@{/home}" th:text="#{msg.Home}"/>
+    </p>
+</div>
+</body>
+</html>
